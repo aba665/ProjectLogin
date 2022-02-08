@@ -1,12 +1,13 @@
 import React,  { useState }  from 'react';
-import './style.css'
+import '../../css/LoginStyle.css';
+
 
 const LoginPage = () => {
-
+    const [ user ]
     const [ email, setEmail ] = useState();
     const [ password, setPassword ] = useState();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
           
           e.preventDefault()
 
@@ -16,7 +17,8 @@ const LoginPage = () => {
 
           }else{
 
-              console.log('Submit', email, password);   
+              console.log('Submit', email, password);
+              
 
           }
     }

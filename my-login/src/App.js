@@ -1,9 +1,10 @@
-import LoginPage from './pages/LoginPage';
+import AppRoutes from './AppRoutes';
+
 
 function App() {
   return (
     <div>
-      <LoginPage />
+          <AppRoutes />
     </div>
   );
 }
