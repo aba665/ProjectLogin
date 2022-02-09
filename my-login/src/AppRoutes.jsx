@@ -5,6 +5,7 @@ import { AuthContext, AuthProvider } from "./contexts/auth.js";
 import LoginPage from './pages/LoginPage/index.jsx';
 import HomePage from './pages/HomePage/index.jsx';
 import LandingPage from "./pages/LandingPage/index.jsx";
+import RegisterPage from "./pages/Register/index.jsx";
 
 const AppRoutes = () => {
     const Private = ({ children }) => {
@@ -26,6 +27,7 @@ const AppRoutes = () => {
                         <Route path="/login" element= {<LoginPage />} />
                         <Route path="/home" element={<Private><HomePage /></Private>} /> 
                         <Route path="/" element={<LandingPage />}/>
+                        <Route path="/cadastro" element={<RegisterPage />}/>
                     </Routes>
                 </AuthProvider>
             </BrowserRouter>

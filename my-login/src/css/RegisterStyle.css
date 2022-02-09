@@ -1,0 +1,32 @@
+.notification{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 2rem;
+    color: red;
+}
+.btnNotification{
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px 15px;
+    max-width: 250px;
+    background-color: #33495e;
+
+}
+.btnNotification:hover{
+    cursor: pointer;
+    background-color: red;
+}
+.form-register{
+    display: flex;
+    width: 55%;
+    height: 90%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../../public/block.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
