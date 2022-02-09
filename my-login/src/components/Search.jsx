@@ -12,7 +12,7 @@ const  Search = ( {onSearch} ) => {
                     id="query"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)} />
-            <button className='btn' onClick={(e) => onSearch(query)}>Buscar</button>
+            <button className='btn' onClick={() => onSearch(query)}>Buscar</button>
         </div>
 
         )

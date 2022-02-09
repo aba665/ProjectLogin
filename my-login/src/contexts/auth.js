@@ -1,11 +1,14 @@
-  import React, { createContext, useEffect, useState } from "react";
-import { api, createSession } from '../service/api';
+import React, { createContext, useEffect, useState } from "react";
 
-export const AuthContext = createContext();
+import { api, createSession } from '../service/api';
 
 import { useNavigate } from "react-router-dom";
 
+export const AuthContext = createContext();
+
+
 export const AuthProvider = ({ children }) => {
+
     const navigate = useNavigate();
     const [ user, setUser ] = useState(null);
     const [loading, setLoading ] = useState(true);
@@ -16,15 +19,17 @@ export const AuthProvider = ({ children }) => {
 
         if(user && token){
             setUser(JSON.parse(user));
-            api.defaults.headers.authorization = `Bearer ${response.data.token}`;
+            api.defaults.headers.authorization = `Bearer ${token}`;
         }
         setLoading(false);
-    }, [])
+    }, []);
 
     const login = async (email, password) => {
         const response = await createSession(email, password);
+
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('user', response.data.token);
+        localStorage.setItem('token', response.data.token);
+        console.log(response.data.token)
         api.defaults.headers.authorization = `Bearer ${response.data.token}`;
         setUser(response.data.user);
         navigate('/');
@@ -37,18 +42,17 @@ export const AuthProvider = ({ children }) => {
         api.defaults.headers.authorization = null;
         setUser(null);
         navigate('/login');
+        console.log('sair', user)
     }
     return (
             <AuthContext.Provider
-            value={
-                {
+            value= {{
                     authenticated: !!user,
                     user,
                     loading,
                     login,
                     logout
-                }
-            }>
+             }}>
                 {children}
             </AuthContext.Provider>
 

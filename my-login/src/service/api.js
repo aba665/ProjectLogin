@@ -6,6 +6,10 @@ export const api = axios.create({
     baseURL: 'http://localhost:5000',
 });
 
+export const createSession = async (email, password) => {
+    return api.post('/sessions', {email, password});
+}
+
 export const getRepositories = async(userId, query) => {
     let url = `/users/${userId}/repositories/`
     if(query !== ''){
@@ -14,15 +18,15 @@ export const getRepositories = async(userId, query) => {
     return api.get(url);  
 }
 
-export const createRepository = async (userId, RepositoryUrl) => 
+export const createRepository = async (userId, repositoryUrl) => 
 {
-    const repositoryName = getRepositoryName(RepositoryUrl)
-    const url = `users/${userId}/repositories/`;
-    return api.post(url, { name: repositoryName, url: RepositoryUrl});
+    const repositoryName = getRepositoryName(repositoryUrl)
+    let url = `/users/${userId}/repositories/`;
+    return api.post(url, { nome: repositoryName, url: repositoryUrl});
 }
 
 export const destroyRepository = async (userId, id) => {
-  const url = `users/${userId}/repositories/${id}`;
+  let url = `/users/${userId}/repositories/${id}`;
   return api.delete(url);  
 }
 
@@ -34,7 +38,4 @@ const getRepositoryName = (url) => {
         return `${values[1]}/${values[2]}`
     }
 
-export const createSession = async (email, password) => {
-        return api.post('/sessions', {email, password});
-    }
 }

@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
+    padding: 0 2rem;
     color: red;
 }
 #main .nav{
@@ -72,4 +74,9 @@
 #main .btn{
     padding: 3px;
     background-color: red;
+}
+#main .btn:hover{
+    cursor: pointer;
+    background-color: rgb(44, 37, 37);
+    color: #fff;
 }

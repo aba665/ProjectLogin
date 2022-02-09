@@ -1,15 +1,16 @@
-import React,  { useState }  from 'react';
+import React,  { useContext, useState }  from 'react';
+import { AuthContext } from '../../contexts/auth';
 import '../../css/LoginStyle.css';
 
 
 const LoginPage = () => {
-    const [ user ]
-    const [ email, setEmail ] = useState();
-    const [ password, setPassword ] = useState();
+    const { login } = useContext(AuthContext);
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('');
 
     const handleSubmit = async (e) => {
           
-          e.preventDefault()
+        //   e.preventDefault()
 
           if(email.length <= 0  || password.length <= 0){
 
@@ -17,8 +18,8 @@ const LoginPage = () => {
 
           }else{
 
-              console.log('Submit', email, password);
-              
+            console.log(email, password);
+            login(email, password);
 
           }
     }
@@ -26,7 +27,7 @@ const LoginPage = () => {
     return (
         <div id='login'>
           
-            <form className='form' onSubmit={handleSubmit}>
+            <div className='form'>
             <h1 className='title'>Login Do Sistema</h1>
                 <div className='field'>
                     <label htmlFor='email'>Email:</label>
@@ -37,9 +38,9 @@ const LoginPage = () => {
                     <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
               </div>
               <div className='actions'>
-                  <button type='submit'>Entrar</button>
+                  <button type='submit'  onClick={handleSubmit}>Entrar</button>
               </div>
-            </form>
+            </div>
         </div>
     )
 }
