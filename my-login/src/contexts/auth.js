@@ -29,20 +29,26 @@ export const AuthProvider = ({ children }) => {
 
         localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('token', response.data.token);
-        console.log(response.data.token)
         api.defaults.headers.authorization = `Bearer ${response.data.token}`;
         setUser(response.data.user);
-        navigate('/');
+        navigate('/home');
     }
+    const Regist = async (email, password) => {
+        const response = await createSession(email, password);
 
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('token', response.data.token);
+        api.defaults.headers.authorization = `Bearer ${response.data.token}`;
+        setUser(response.data.user);
+        
+    }
     const logout = () => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         
         api.defaults.headers.authorization = null;
         setUser(null);
-        navigate('/login');
-        console.log('sair', user)
+        navigate('/');
     }
     return (
             <AuthContext.Provider
@@ -51,7 +57,8 @@ export const AuthProvider = ({ children }) => {
                     user,
                     loading,
                     login,
-                    logout
+                    logout,
+                    Regist
              }}>
                 {children}
             </AuthContext.Provider>

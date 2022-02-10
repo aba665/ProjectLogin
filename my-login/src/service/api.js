@@ -10,6 +10,11 @@ export const createSession = async (email, password) => {
     return api.post('/sessions', {email, password});
 }
 
+
+export const createUser = async (email, password) => {
+    return api.post('/users', {email, password});
+
+}
 export const getRepositories = async(userId, query) => {
     let url = `/users/${userId}/repositories/`
     if(query !== ''){

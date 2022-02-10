@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext} from 'react';
-import '../../css/HomeStyle.css';
+
+import '../../css/HomeStyle.css'
 
 import Nav from '../../components/Nav';
 
@@ -12,12 +13,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 
 
+
 const HomePage = () => {
     const { user, logout } = useContext(AuthContext);
     const [ repositories, setRepositories ] = useState([]);
     const [ loading, setLoading ] = useState(true);
-    const [ loadingError, setLoadingError] = useState(false);
-    
+    const [ loadingError, setLoadingError] = useState(false); 
+
     const loadData = async (query = '') => {
         try {
             setLoading(true);
@@ -34,6 +36,7 @@ const HomePage = () => {
     useEffect(() => {
         (async () => await loadData())();
     }, [])
+    
 
    const handleLogout = () => {
         logout();
@@ -42,8 +45,8 @@ const HomePage = () => {
        if(query === '' || query.length === 0){
            alert('Digite Algo No Campo De Busca Por Favor!');
         }else{
-            console.log("buscando", query);
-            loadData();
+           
+            loadData(query);
 
         }
    }
@@ -84,11 +87,9 @@ const HomePage = () => {
 
     return (
         <div id='main'>
-           
             <Nav onLogout={handleLogout}/>
             <Search onSearch={handleSearch}/>
             <Repository repositories={repositories} onDeleteRepository={handleDelete} onNewRepo={handleAdd}/>
-
         </div>
     )
 
