@@ -6,6 +6,29 @@
     padding: 0 2rem;
     color: red;
 }
+.removeCount{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 2rem;
+    color: red;
+}
+.removeContent{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+.removeContent button{
+    width: 100px;
+    padding: 8px;
+    font-weight: 600;
+}
+.removeContent button:hover{
+    background-color: red;
+    
+}
 #main .nav{
     display: flex;
     align-items: center;
@@ -19,6 +42,41 @@
     font-size: 1.5rem;
     margin: 0;
     color: red;
+}
+.firstUl{
+    position: relative;
+    margin-right: 10px;
+    color: red;
+}
+.firstUl li{
+    list-style: none;
+}
+.firstUl li:hover  ul{
+    display: block;
+}
+.firstUl ul{
+    display: block;
+    position: absolute;
+    width: 20vw;
+    max-width: 150px;
+    padding: 5px 0;
+    top: 25px;
+    right: 0;
+    background: #000000;
+    display: none;
+}
+.firstUl ul li{
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    
+}
+.firstUl li:hover{
+    cursor: pointer;
+}
+.firstUl ul li:hover{
+    background: #33495e;
+    cursor: pointer;
 }
 #main .search, #main .new{
     display: flex;
@@ -74,7 +132,7 @@
 #main .btn{
     padding: 3px;
     background-color: red;
-    opacity: 1;
+    
 }
 #main .btn:hover{
     cursor: pointer;

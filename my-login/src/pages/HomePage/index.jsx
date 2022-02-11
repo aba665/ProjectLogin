@@ -9,16 +9,20 @@ import Search from '../../components/Search';
 import Repository from '../../components/Repository';
 
 import { getRepositories, createRepository, destroyRepository } from '../../service/api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 
 
 
 const HomePage = () => {
+
+    const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
     const [ repositories, setRepositories ] = useState([]);
     const [ loading, setLoading ] = useState(true);
     const [ loadingError, setLoadingError] = useState(false); 
+    const [ removeCount, setRemoveCount ] = useState(false);
+    const valueCss ='firstUl';
 
     const loadData = async (query = '') => {
         try {
@@ -70,24 +74,42 @@ const HomePage = () => {
      } 
     }
     
-    if(loadingError){
+    // if(loadingError){
+    //     return (
+    //         <div className="loading">
+    //             Erro no carregamento dos dados. <Link to='/login'>Voltar</Link>
+    //         </div>
+    //     )
+    // }
+//    if(loading){
+//        return (
+//            <div className="loading">
+//                Carregando...
+//            </div>
+//        )
+//    }
+
+
+    function goUpdate(){
+        navigate('/update')
+    }
+
+    if(removeCount){
         return (
-            <div className="loading">
-                Erro no carregamento dos dados. <Link to='/login'>Voltar</Link>
+            <div className="removeCount">
+                <h1>Você realmente deseja excluir a sua conta?</h1>
+                <div className='removeContent'>
+                    <button onClick={''}>Sim</button>
+                    <button onClick={() => {setRemoveCount(false)}}>Não</button>
+                </div>
             </div>
         )
     }
-   if(loading){
-       return (
-           <div className="loading">
-               Carregando...
-           </div>
-       )
-   }
 
-    return (
-        <div id='main'>
-            <Nav onLogout={handleLogout}/>
+
+return (
+    <div id='main'>
+            <Nav onLogout={handleLogout} onUpdate={goUpdate} onRemoveCount={() => {setRemoveCount(true)}} styleCss={valueCss}/>
             <Search onSearch={handleSearch}/>
             <Repository repositories={repositories} onDeleteRepository={handleDelete} onNewRepo={handleAdd}/>
         </div>

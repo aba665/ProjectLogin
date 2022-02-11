@@ -1,10 +1,18 @@
 import React from "react";
 
-const Nav = ({ onLogout}) => {
+const Nav = ({ onLogout, styleCss, onUpdate, onRemoveCount }) => {
     return (
         <div className='nav'>
         <h1 className="logo">Repository</h1>
-        <button className='btn btnHidden' onClick={onLogout}>Sair</button>
+        <ul className={ styleCss }>
+               <li>Configurações
+                   <ul className="secondUl">
+                       <li onClick={onUpdate}>Update Data</li>
+                       <li onClick={onRemoveCount}>Remove Count</li>
+                       <li onClick={onLogout}>LogOut</li>
+                   </ul>
+               </li>
+           </ul>
     </div>
 
     )
