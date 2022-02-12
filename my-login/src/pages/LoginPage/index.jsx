@@ -17,7 +17,7 @@ const LoginPage = () => {
 
           }else{
 
-            console.log(email, password);
+        
             login(email, password);
 
           }
