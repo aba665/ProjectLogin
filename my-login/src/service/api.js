@@ -11,10 +11,6 @@ export const createSession = async (email, password) => {
 }
 
 
-export const createUser = async (email, password) => {
-    return api.post('/users', {email, password});
-
-}
 export const getRepositories = async(userId, query) => {
     let url = `/users/${userId}/repositories/`
     if(query !== ''){
@@ -31,8 +27,8 @@ export const createRepository = async (userId, repositoryUrl) =>
 }
 
 export const destroyRepository = async (userId, id) => {
-  let url = `/users/${userId}/repositories/${id}`;
-  return api.delete(url);  
+    let url = `/users/${userId}/repositories/${id}`;
+    return api.delete(url);  
 }
 
 const getRepositoryName = (url) => {
@@ -42,5 +38,21 @@ const getRepositoryName = (url) => {
         const values = match[2].split('/');
         return `${values[1]}/${values[2]}`
     }
+    
+}
 
+// Funções relacionada as rotas de usuário
+export const createUser = async (email, password) => {
+    return api.post('/users', {email, password});
+
+}
+
+export const deleteUser = async (userId) => {
+    let url = `/users/${userId}`;
+    return api.delete(url);
+}
+
+export const updateUser = async (userId, password) => {
+    let url = `/users/${userId}`;
+    return api.put(url, { password });
 }

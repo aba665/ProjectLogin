@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import '../../css/RegisterStyle.css';
+import { updateUser } from "../../service/api";
+import { AuthContext } from '../../contexts/auth';
 
 export default function UpdatePage(){
    
-    const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const { user } = useContext(AuthContext);
+
    
+    async function update(password){
+        try {
+           await updateUser(user?.id, password) 
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     return (
         <div id='login'>
     
@@ -13,16 +24,6 @@ export default function UpdatePage(){
                 
                 <h1 className='title'>Atualização de Dados</h1>
                 
-                <div className='field'>
-
-                    <label htmlFor='email'>Novo Email:</label>
-                    <input 
-                        type="email" 
-                        name="email" id="email" 
-                        value={email} onChange={(e) => setEmail(e.target.value)}
-                        />
-
-                </div>
                 <div className='field'>
 
                     <label htmlFor='password'>Nova Senha:</label>
@@ -36,7 +37,7 @@ export default function UpdatePage(){
 
                 </div>
                 <div className='actions'>
-                    <button type='submit'  onClick={null}>Atualizar</button>
+                    <button type='submit'  onClick={update}>Atualizar</button>
                 </div>
             </div>
 

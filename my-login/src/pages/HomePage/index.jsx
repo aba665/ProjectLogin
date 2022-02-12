@@ -8,7 +8,7 @@ import Search from '../../components/Search';
 
 import Repository from '../../components/Repository';
 
-import { getRepositories, createRepository, destroyRepository } from '../../service/api';
+import { getRepositories, createRepository, destroyRepository, deleteUser } from '../../service/api';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 
@@ -74,24 +74,34 @@ const HomePage = () => {
      } 
     }
     
-    // if(loadingError){
-    //     return (
-    //         <div className="loading">
-    //             Erro no carregamento dos dados. <Link to='/login'>Voltar</Link>
-    //         </div>
-    //     )
-    // }
-//    if(loading){
-//        return (
-//            <div className="loading">
-//                Carregando...
-//            </div>
-//        )
-//    }
+    if(loadingError){
+        return (
+            <div className="loading">
+                Erro no carregamento dos dados. <Link to='/login'>Voltar</Link>
+            </div>
+        )
+    }
+   if(loading){
+       return (
+           <div className="loading">
+               Carregando...
+           </div>
+       )
+   }
 
 
     function goUpdate(){
         navigate('/update')
+    }
+
+    async function destroyUser(){
+        try {
+            await deleteUser(user?.id);
+            logout();
+        } catch (err) {
+            console.error(err);
+            setLoadingError(true);
+        }
     }
 
     if(removeCount){
@@ -99,7 +109,7 @@ const HomePage = () => {
             <div className="removeCount">
                 <h1>Você realmente deseja excluir a sua conta?</h1>
                 <div className='removeContent'>
-                    <button onClick={''}>Sim</button>
+                    <button onClick={destroyUser}>Sim</button>
                     <button onClick={() => {setRemoveCount(false)}}>Não</button>
                 </div>
             </div>
