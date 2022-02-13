@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         navigate('/');
     }
+    
 
 
     return (

@@ -2,16 +2,18 @@ import React, { useState, useContext } from "react";
 import '../../css/RegisterStyle.css';
 import { updateUser } from "../../service/api";
 import { AuthContext } from '../../contexts/auth';
+import { useNavigate } from "react-router-dom";
 
 export default function UpdatePage(){
-   
+    const navigate = useNavigate();
     const [ password, setPassword ] = useState('');
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
 
    
-    async function update(password){
+    async function update(){
         try {
            await updateUser(user?.id, password) 
+           logout();
         } catch (err) {
             console.error(err);
         }
