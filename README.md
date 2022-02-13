@@ -19,6 +19,7 @@ Criar uma página de crud e fazer a integração do Frontend com o Backend.
 ## Requisitos para utilizar: 
 
   Este repositório é a parte frontend, para poder utilizar tem que clonar esse repositório e o Dev-Server que é o backend em sua máquina.
+  Será necessário ter um banco de dados no mongodb atlas database, tendo isso é só ir no arquivo .env.example e colocar a url do seu database no MONGODB_URI. 
   
 
 ## Tecnologias utilizadas:
