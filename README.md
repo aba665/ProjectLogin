@@ -2,7 +2,7 @@
 
 ## Requisitos para utilizar: 
 
-  Este repositório é a parte frontend, para poder utilizar tem que clonar esse repositório e o Dev_Server que é o backend em sua máquina.
+  Este repositório é a parte frontend, para poder utilizar tem que clonar esse repositório e o Dev-Server que é o backend em sua máquina.
   
 ## Objetivo do projeto:
 
